@@ -318,6 +318,17 @@ footer {
     z-index: 2;
 }
 
+.hero__sun {
+    background: var(--acid);
+    border-radius: 50%;
+    height: 64%;
+    left: 50%;
+    position: absolute;
+    top: 48%;
+    transform: translate(-50%, -50%);
+    width: 78%;
+}
+
 .hero__bottom {
     align-items: flex-end;
     bottom: 2rem;
