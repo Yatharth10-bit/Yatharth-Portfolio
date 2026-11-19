@@ -1,0 +1,61 @@
+name: Verify and deploy portfolio
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm run build && npm run check
+      - name: Install browser audit tools outside the build
+        run: |
+          npm install --prefix "$RUNNER_TEMP/audit" playwright@1.56.1 axe-core@4.10.3 lighthouse@12.8.2
+          "$RUNNER_TEMP/audit/node_modules/.bin/playwright" install --with-deps chromium
+      - name: Run browser verification and mobile Lighthouse
+        env:
+          AUDIT_PORTFOLIO: ${{ runner.temp }}/audit
+        run: |
+          node scripts/preview.mjs &
+          trap 'kill $!' EXIT
+          for attempt in {1..30}; do curl -fsS http://127.0.0.1:4173/Yatharth-Portfolio/ -o /dev/null && break; sleep 1; done
+          node scripts/audit.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: browser-audit
+          path: .audit/
+          if-no-files-found: ignore
+      - uses: actions/upload-pages-artifact@v3
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+        with:
+          path: dist
+  deploy:
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    needs: verify
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    concurrency:
+      group: portfolio-pages
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
