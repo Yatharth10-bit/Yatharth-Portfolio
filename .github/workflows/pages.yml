@@ -19,6 +19,8 @@ jobs:
         with:
           node-version: 22
       - run: npm run build && npm run check
+      - name: Stamp the deployment artifact
+        run: echo "$GITHUB_SHA" > dist/revision.txt
       - name: Install browser audit tools outside the build
         run: |
           npm install --prefix "$RUNNER_TEMP/audit" playwright@1.56.1 axe-core@4.10.3 lighthouse@12.8.2
@@ -58,4 +60,19 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+      - name: Check the published revision and homepage
+        run: |
+          site='https://yatharth10-bit.github.io/Yatharth-Portfolio/'
+          for attempt in {1..18}; do
+            published=$(curl --max-time 12 -fsSL "${site}revision.txt?release=$GITHUB_SHA" || true)
+            if [ "$published" = "$GITHUB_SHA" ]; then
+              curl --retry 2 -fsSL "${site}?release=$GITHUB_SHA" -o "$RUNNER_TEMP/portfolio-home.html"
+              grep -Fq 'id="instrument-title"' "$RUNNER_TEMP/portfolio-home.html"
+              echo "Confirmed Signal Studio at $site for revision $GITHUB_SHA"
+              exit 0
+            fi
+            sleep 10
+          done
+          echo 'Published content did not return the expected revision.' >&2
+          exit 1
 
