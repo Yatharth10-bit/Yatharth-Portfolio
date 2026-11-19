@@ -9,7 +9,7 @@ permissions:
   contents: read
 jobs:
   verify:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
@@ -39,6 +39,7 @@ jobs:
           name: browser-audit
           path: .audit/
           if-no-files-found: ignore
+          include-hidden-files: true
       - uses: actions/upload-pages-artifact@v3
         if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
         with:
