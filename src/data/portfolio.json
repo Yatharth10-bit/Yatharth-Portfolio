@@ -1,0 +1,159 @@
+{
+  "name": "Yatharth Srivastav",
+  "handle": "yatharth10-bit",
+  "title": "Developer & designer",
+  "location": "India",
+  "email": "yatharthlegend252@gmail.com",
+  "url": "https://yatharth10-bit.github.io/Yatharth-Portfolio/",
+  "intro": "I build satellite trackers, voice interfaces, and small experiments for the web.",
+  "bio": "I’m a student developer and designer in India. I like taking something hard to picture, like an orbit or a spoken command, and giving it an interface you can actually play with.",
+  "offscreen": "Away from the keyboard, you’ll find me playing badminton, lifting, gaming, or catching up on anime.",
+  "socials": {
+    "GitHub": "https://github.com/Yatharth10-bit",
+    "Instagram": "https://www.instagram.com/yatharthsrivastav_/",
+    "YouTube": "https://www.youtube.com/@yatharthsrivastav10"
+  },
+  "journey": [
+    [
+      "Jan 2025",
+      "First portfolio",
+      "Published the first version of this site on GitHub Pages."
+    ],
+    [
+      "Jun 2026",
+      "From gallery to case studies",
+      "Added write-ups for ClaimGuard and ORBITAL, with a closer look at the design and development."
+    ],
+    [
+      "Aug 2026",
+      "Satellites and hand gestures",
+      "Added an orbit quiz to OrbytMax and tuned gesture recognition in Ultron."
+    ],
+    [
+      "Nov 2026",
+      "Signal Studio",
+      "Rebuilt the portfolio around five projects and an interactive signal experiment."
+    ]
+  ],
+  "skills": [
+    [
+      "Interfaces",
+      "React · Next.js · TypeScript · Tailwind"
+    ],
+    [
+      "Systems",
+      "Python · Node.js · PostgreSQL"
+    ],
+    [
+      "Interaction",
+      "Three.js · Figma · Prototyping"
+    ]
+  ],
+  "projects": [
+    {
+      "id": "orbytmax",
+      "name": "OrbytMax",
+      "category": "Products",
+      "kind": "Space education",
+      "short": "A satellite map with a reason to look up.",
+      "problem": "A dot on a map tells you very little about the spacecraft above you. OrbytMax connects the object to its mission and the next approximate visible pass over your city.",
+      "approach": "Start with the map, pick a satellite, then explore a mission or try the orbit basics quiz. City search falls back to a local list when geocoding is unavailable.",
+      "stack": [
+        "Next.js",
+        "TypeScript",
+        "PostgreSQL",
+        "Prisma"
+      ],
+      "repo": "https://github.com/Yatharth10-bit/orbytmax-app",
+      "art": "orbytmax.svg",
+      "capture": "orbytmax-site.webp",
+      "captureAlt": "OrbytMax mission library rendered from its local build.",
+      "captureWidth": 1000,
+      "captureHeight": 625
+    },
+    {
+      "id": "ultron",
+      "name": "Ultron",
+      "category": "Products",
+      "kind": "Local computing",
+      "short": "A Windows assistant that listens and watches locally.",
+      "problem": "Opening an app or triggering a shortcut usually means reaching for a mouse. Ultron explores voice and hand gestures as shortcuts for everyday desktop tasks.",
+      "approach": "Vosk recognizes speech while MediaPipe and OpenCV read hand gestures. A configurable command map connects each input to an explicit action, with a dry-run mode for testing.",
+      "stack": [
+        "Python",
+        "Vosk",
+        "MediaPipe",
+        "OpenCV"
+      ],
+      "art": "ultron.svg",
+      "capture": "ultron-site.webp",
+      "captureAlt": "Transcript of the Ultron command-line help screen.",
+      "captureWidth": 1000,
+      "captureHeight": 525
+    },
+    {
+      "id": "claimguard",
+      "name": "ClaimGuard",
+      "category": "Products",
+      "kind": "Review tools",
+      "short": "A review desk for the claims in product copy.",
+      "problem": "A small brand can easily lose the connection between a regulatory update and the copy it affects. This prototype puts both in one review workflow.",
+      "approach": "A category-specific feed surfaces updates. Reviewers can inspect a flagged claim, read a suggested rewrite and decide what to change before publishing.",
+      "role": "Design and development",
+      "stack": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Supabase"
+      ],
+      "repo": "https://github.com/Yatharth10-bit/claimguard",
+      "art": "claimguard.svg",
+      "capture": "claimguard-site.webp",
+      "captureAlt": "ClaimGuard landing page from the project’s screenshots.",
+      "live": "https://claimguard-silk.vercel.app",
+      "captureWidth": 1000,
+      "captureHeight": 625
+    },
+    {
+      "id": "orbital",
+      "name": "ORBITAL",
+      "category": "Experiments",
+      "kind": "Data visualization",
+      "short": "A globe that turns orbital data into motion.",
+      "problem": "Satellite catalogs are hard to read as tables. ORBITAL makes the paths visible on a globe so you can follow a single satellite in context.",
+      "approach": "Filter for Starlink, the ISS, GPS or weather satellites, then select an object to follow its path through the Three.js scene.",
+      "role": "Design and development",
+      "stack": [
+        "Three.js",
+        "WebGL"
+      ],
+      "repo": "https://github.com/Yatharth10-bit/Satellite-tracker",
+      "art": "orbital.svg",
+      "capture": "orbital-site.webp",
+      "captureAlt": "ORBITAL project cover from the original portfolio.",
+      "captureWidth": 1000,
+      "captureHeight": 500
+    },
+    {
+      "id": "afteryou",
+      "name": "After You",
+      "category": "Experiments",
+      "kind": "Creative coding",
+      "short": "A typewriter for the words you’d leave behind.",
+      "problem": "What would you write for the next person at a typewriter? This small web experiment turns a short note into a paper snapshot.",
+      "approach": "Type a note and print a snapshot onto the page. Notes stay in your current session. The carriage control changes the position of the print head.",
+      "stack": [
+        "HTML",
+        "CSS",
+        "JavaScript"
+      ],
+      "live": "afteryou.html#typewriter",
+      "repo": "https://github.com/Yatharth10-bit/Yatharth-Portfolio",
+      "art": "afteryou.svg",
+      "capture": "afteryou-site.webp",
+      "captureAlt": "A note printed in the After You browser experiment.",
+      "captureWidth": 640,
+      "captureHeight": 399
+    }
+  ]
+}
