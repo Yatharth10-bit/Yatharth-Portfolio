@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Detailed project build plan for the 2030 CSE internship roadmap.">
+    <meta name="theme-color" content="#101820">
+    <title>Project Detail - CSE Roadmap</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wdth,wght@75..100,300..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="roadmap.css?v=1">
+    <link rel="stylesheet" href="project-detail.css?v=1">
+    <script src="project-detail.js?v=1" defer></script>
+</head>
+<body>
+    <header class="topbar">
+        <a class="brand" href="roadmap.html#projects">CSE 2030 <span>PROJECT DETAIL</span></a>
+        <nav aria-label="Project detail navigation">
+            <a href="roadmap.html#projects">All Projects</a>
+            <a href="#build">Build Plan</a>
+            <a href="#resume">Resume</a>
+            <a href="#next">Next Steps</a>
+        </nav>
+    </header>
+
+    <main class="detail-main">
+        <section class="detail-hero">
+            <div>
+                <p class="eyebrow" data-detail-track>Project track</p>
+                <h1 data-detail-title>Loading project...</h1>
+                <p class="detail-summary" data-detail-summary></p>
+            </div>
+            <aside class="detail-facts" aria-label="Project quick facts">
+                <div>
+                    <span>Difficulty</span>
+                    <b data-detail-difficulty></b>
+                </div>
+                <div>
+                    <span>Best time</span>
+                    <b data-detail-timing></b>
+                </div>
+                <div>
+                    <span>Primary stack</span>
+                    <b data-detail-stack></b>
+                </div>
+            </aside>
+        </section>
+
+        <section class="detail-section">
+            <div class="detail-grid">
+                <article>
+                    <span>Problem</span>
+                    <h2>What it solves</h2>
+                    <p data-detail-problem></p>
+                </article>
+                <article>
+                    <span>Why it matters</span>
+                    <h2>Internship signal</h2>
+                    <p data-detail-signal></p>
+                </article>
+            </div>
+        </section>
+
+        <section class="detail-section detail-dark" id="build">
+            <div class="detail-heading">
+                <span>Build plan</span>
+                <h2>How to make it properly</h2>
+            </div>
+            <div class="detail-columns">
+                <article>
+                    <h3>Core features</h3>
+                    <ul data-detail-features></ul>
+                </article>
+                <article>
+                    <h3>Suggested architecture</h3>
+                    <ul data-detail-architecture></ul>
+                </article>
+                <article>
+                    <h3>Milestones</h3>
+                    <ul data-detail-milestones></ul>
+                </article>
+            </div>
+        </section>
+
+        <section class="detail-section" id="resume">
+            <div class="detail-heading">
+                <span>Proof</span>
+                <h2>What this should prove</h2>
+            </div>
+            <div class="detail-grid detail-grid--three">
+                <article>
+                    <span>Skills</span>
+                    <h3>Skills demonstrated</h3>
+                    <ul data-detail-skills></ul>
+                </article>
+                <article>
+                    <span>Resume</span>
+                    <h3>Resume bullet</h3>
+                    <p data-detail-resume></p>
+                </article>
+                <article>
+                    <span>Proof checklist</span>
+                    <h3>Ship with</h3>
+                    <ul data-detail-proof></ul>
+                </article>
+            </div>
+        </section>
+
+        <section class="detail-section detail-dark" id="next">
+            <div class="detail-heading">
+                <span>Judgment</span>
+                <h2>What to avoid and how to extend</h2>
+            </div>
+            <div class="detail-columns">
+                <article>
+                    <h3>Common mistakes</h3>
+                    <ul data-detail-pitfalls></ul>
+                </article>
+                <article>
+                    <h3>Advanced upgrades</h3>
+                    <ul data-detail-upgrades></ul>
+                </article>
+                <article>
+                    <h3>Best next project</h3>
+                    <p data-detail-next></p>
+                </article>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

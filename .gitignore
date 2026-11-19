@@ -1,0 +1,4 @@
+dist/
+.audit/
+node_modules/
+
