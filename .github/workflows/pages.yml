@@ -1,0 +1,81 @@
+name: Verify and deploy portfolio
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm run build && npm run check
+      - name: Stamp the deployment artifact
+        run: echo "$GITHUB_SHA" > dist/revision.txt
+      - name: Install browser audit tools outside the build
+        run: |
+          npm install --prefix "$RUNNER_TEMP/audit" playwright@1.56.1 axe-core@4.10.3 lighthouse@12.8.2
+          chrome_path=$(command -v google-chrome)
+          "$chrome_path" --version
+          echo "CHROME_PATH=$chrome_path" >> "$GITHUB_ENV"
+      - name: Run browser verification and mobile Lighthouse
+        env:
+          AUDIT_PORTFOLIO: ${{ runner.temp }}/audit
+        run: |
+          node scripts/preview.mjs &
+          trap 'kill $!' EXIT
+          for attempt in {1..30}; do curl -fsS http://127.0.0.1:4173/Yatharth-Portfolio/ -o /dev/null && break; sleep 1; done
+          node scripts/audit.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: browser-audit
+          path: .audit/
+          if-no-files-found: ignore
+          include-hidden-files: true
+      - uses: actions/upload-pages-artifact@v3
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+        with:
+          path: dist
+  deploy:
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    needs: verify
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    concurrency:
+      group: portfolio-pages
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+      - name: Check the published revision and homepage
+        run: |
+          site='https://yatharth10-bit.github.io/Yatharth-Portfolio/'
+          for attempt in {1..18}; do
+            published=$(curl --max-time 12 -fsSL "${site}revision.txt?release=$GITHUB_SHA" || true)
+            if [ "$published" = "$GITHUB_SHA" ]; then
+              curl --retry 2 -fsSL "${site}?release=$GITHUB_SHA" -o "$RUNNER_TEMP/portfolio-home.html"
+              grep -Fq 'id="instrument-title"' "$RUNNER_TEMP/portfolio-home.html"
+              echo "Confirmed Signal Studio at $site for revision $GITHUB_SHA"
+              exit 0
+            fi
+            sleep 10
+          done
+          echo 'Published content did not return the expected revision.' >&2
+          exit 1
+

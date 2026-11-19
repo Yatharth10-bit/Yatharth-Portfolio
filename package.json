@@ -1,0 +1,10 @@
+{
+  "name": "signal-studio-portfolio",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "preview": "node scripts/preview.mjs",
+    "check": "node scripts/check.mjs"
+  }
+}
