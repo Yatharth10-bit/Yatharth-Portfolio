@@ -38,7 +38,14 @@ I’m Yatharth, a student developer and designer in India. I build things I want
 ![Calendar of daily authored commits in the same public repositories](assets/generated/calendar.svg)
 
 <!-- signal:recent:start -->
-The first activity snapshot will appear after the daily refresh. [Browse my public repositories](https://github.com/yatharth10-bit?tab=repositories).
+Public default branches · 44 authored commits · 1-day active streak · updated 2026-11-19 (UTC).
+
+**Recently pushed projects**
+
+- [Yatharth-Portfolio](https://github.com/Yatharth10-bit/Yatharth-Portfolio) · pushed 2026-11-19
+- [claimguard](https://github.com/Yatharth10-bit/claimguard) · pushed 2026-11-19
+- [Satellite-tracker](https://github.com/Yatharth10-bit/Satellite-tracker) · pushed 2026-11-19
+- [orbytmax-app](https://github.com/Yatharth10-bit/orbytmax-app) · pushed 2026-11-19
 <!-- signal:recent:end -->
 
 [Email me](mailto:yatharthlegend252@gmail.com) · [Instagram](https://www.instagram.com/yatharthsrivastav_/) · [YouTube](https://www.youtube.com/@yatharthsrivastav10)
