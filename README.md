@@ -1,22 +1,45 @@
-# Yatharth Srivastav · Signal Studio
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/banner-dark.svg">
+  <img src="assets/banner-light.svg" width="100%" alt="Yatharth Srivastav — developer and designer in India.">
+</picture>
 
-[Explore the interactive portfolio](https://yatharth10-bit.github.io/Yatharth-Portfolio/)
+I’m Yatharth, a student developer and designer in India. I build things I want to use, from a satellite pass finder to a desktop assistant that understands hand gestures. I’m learning how to make complex data feel natural to explore.
 
-![Signal Studio with its interactive wireframe knot and selected projects](docs/portfolio-desktop.webp)
+[![Explore my interactive portfolio](assets/explore.svg)](https://yatharth10-bit.github.io/Yatharth-Portfolio/)
 
-Five case studies connect satellite tracking, a local Windows voice assistant, compliance review, orbital visualization and a playful browser typewriter. Press **Ctrl/Cmd + K** to jump between them. Tune the signal, switch themes or open the footer terminal.
+## Pick a project
 
-## Run locally
+<details open>
+<summary><strong>Explore space</strong></summary>
 
-Requires Node.js 22+. The production build uses Node's standard library, CSS and vanilla JavaScript.
+[OrbytMax](https://github.com/Yatharth10-bit/orbytmax-app) brings satellite passes, mission libraries, and orbit lessons together. [ORBITAL](https://github.com/Yatharth10-bit/Satellite-tracker) lets you follow individual satellites around a Three.js globe.
 
-```sh
-npm run build
-npm run check
-npm run preview
-```
+</details>
 
-Open `http://127.0.0.1:4173/Yatharth-Portfolio/`. Edit project descriptions in `src/data/portfolio.json`. Push a feature branch and open a pull request. Verified changes to main deploy via GitHub Actions.
+<details>
+<summary><strong>Look inside a prototype</strong></summary>
 
-[Development guide](docs/README-DEV.md) · [Source inventory](docs/RECON.md)
+[ClaimGuard](https://github.com/Yatharth10-bit/claimguard) puts product claims, review flags, and suggested rewrites in one workspace. [Ultron](https://yatharth10-bit.github.io/Yatharth-Portfolio/ultron.html) maps local speech and hand gestures to actions on a Windows desktop.
+
+</details>
+
+<details>
+<summary><strong>Try a small experiment</strong></summary>
+
+[After You](https://yatharth10-bit.github.io/Yatharth-Portfolio/afteryou.html) is a typewriter you can play with in your browser.
+
+</details>
+
+[![Next.js — OrbytMax](assets/nextjs.svg)](https://github.com/Yatharth10-bit/orbytmax-app) [![Python — Ultron](assets/python.svg)](https://yatharth10-bit.github.io/Yatharth-Portfolio/ultron.html) [![Three.js — ORBITAL](assets/threejs.svg)](https://github.com/Yatharth10-bit/Satellite-tracker)
+
+## On the workbench
+
+![Commit count, current daily streak and leading languages across owned public non-fork repositories](assets/generated/stats.svg)
+![Calendar of daily authored commits in the same public repositories](assets/generated/calendar.svg)
+
+<!-- signal:recent:start -->
+The first activity snapshot will appear after the daily refresh. [Browse my public repositories](https://github.com/yatharth10-bit?tab=repositories).
+<!-- signal:recent:end -->
+
+[Email me](mailto:yatharthlegend252@gmail.com) · [Instagram](https://www.instagram.com/yatharthsrivastav_/) · [YouTube](https://www.youtube.com/@yatharthsrivastav10)
 
