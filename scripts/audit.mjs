@@ -7,7 +7,8 @@ const require=createRequire(path.join(process.env.AUDIT_PORTFOLIO,'package.json'
 const {chromium}=require('playwright');
 const url='http://127.0.0.1:4173/Yatharth-Portfolio/';
 await fs.mkdir('.audit',{recursive:true});
-const browser=await chromium.launch({headless:true});
+const chromePath=process.env.CHROME_PATH || chromium.executablePath();
+const browser=await chromium.launch({headless:true,executablePath:chromePath});
 try{
   const page=await browser.newPage({reducedMotion:'reduce'});
   const errors=[];
@@ -57,7 +58,7 @@ try{
   assert.deepEqual(errors,[]);
 }finally{await browser.close();}
 const command=path.join(process.env.AUDIT_PORTFOLIO,'node_modules/lighthouse/cli/index.js');
-const status=spawnSync(process.execPath,[command,url,'--quiet','--chrome-flags=--headless --no-sandbox --disable-dev-shm-usage','--only-categories=performance,accessibility,best-practices,seo','--output=json','--output-path=.audit/lighthouse.json'],{stdio:'inherit',env:{...process.env,CHROME_PATH:chromium.executablePath()}});
+const status=spawnSync(process.execPath,[command,url,'--quiet','--chrome-flags=--headless --no-sandbox --disable-dev-shm-usage','--only-categories=performance,accessibility,best-practices,seo','--output=json','--output-path=.audit/lighthouse.json'],{stdio:'inherit',env:{...process.env,CHROME_PATH:chromePath}});
 if(status.status!==0)throw Error('Lighthouse failed to complete');
 const report=JSON.parse(await fs.readFile('.audit/lighthouse.json','utf8'));
 for(const [key,category] of Object.entries(report.categories)){console.log(key,Math.round(category.score*100));assert.ok(category.score>=.9,`${key} below 90`);}

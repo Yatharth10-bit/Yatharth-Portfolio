@@ -24,7 +24,9 @@ jobs:
       - name: Install browser audit tools outside the build
         run: |
           npm install --prefix "$RUNNER_TEMP/audit" playwright@1.56.1 axe-core@4.10.3 lighthouse@12.8.2
-          "$RUNNER_TEMP/audit/node_modules/.bin/playwright" install --with-deps chromium
+          chrome_path=$(command -v google-chrome)
+          "$chrome_path" --version
+          echo "CHROME_PATH=$chrome_path" >> "$GITHUB_ENV"
       - name: Run browser verification and mobile Lighthouse
         env:
           AUDIT_PORTFOLIO: ${{ runner.temp }}/audit
