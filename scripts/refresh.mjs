@@ -71,36 +71,44 @@ export async function collect(owner, request, now=new Date()) {
   return {owner,today,start,days,total:shas.size,streak,ranked,latest:latest.slice(0,4)};
 }
 
-const titleStyle='font-family="Arial,Helvetica,sans-serif" font-weight="bold" fill="#f2f1e8"';
-const labelStyle='font-family="ui-monospace,Consolas,monospace" fill="#bdc1b9"';
+const titleStyle='font-family="Arial,Helvetica,sans-serif" font-weight="bold" fill="#fcf4e8"';
+const labelStyle='font-family="ui-monospace,Consolas,monospace" fill="#ccd0df"';
 function panel(title,body,height) {
-  return `<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title" viewBox="0 0 760 ${height}"><title id="title">${escape(title)}</title><rect width="760" height="${height}" rx="10" fill="#191c19"/>${body}</svg>\n`;
+  return `<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title" viewBox="0 0 760 ${height}"><title id="title">${escape(title)}</title><rect width="760" height="${height}" rx="10" fill="#171923"/>${body}</svg>\n`;
 }
 function label(x,y,text,size=14) {return `<text x="${x}" y="${y}" font-size="${size}" ${labelStyle}>${escape(text)}</text>`;}
 function heading(x,y,text,size=28) {return `<text x="${x}" y="${y}" font-size="${size}" ${titleStyle}>${escape(text)}</text>`;}
 
 export function renderStats(data) {
-  let body=label(24,28,'PUBLIC REPOSITORIES  /  365 DAYS');
-  if (!data) return panel('Awaiting the first public activity refresh', body+heading(24,76,'Waiting for the first refresh',26)+label(24,109,'Commit totals, daily streak and language mix'),134);
-  const fields=[[24,'Authored commits',data.total],[267,'Active day streak',data.streak]];
-  for (const [x,name,value] of fields) body+=heading(x,75,value,34)+label(x,103,name);
-  const totalBytes=data.ranked.reduce((n,[,bytes])=>n+bytes,0);
-  const top=data.ranked.slice(0,3);
-  body+=heading(476,51,'Language mix',18);
-  top.forEach(([name,size],i)=>{
-    const clipped=[...name].slice(0,15).join('');
-    body+=label(476,74+19*i,clipped+'  '+(size*100/totalBytes).toFixed(1)+'%',13);
-  });
-  if (!top.length) body+=label(476,80,'No language data',13);
-  return panel('Public authored commits '+data.total+', active streak '+data.streak+' days. Top languages: '+top.map(([n])=>n).join(', '),body,134);
+  if (!data) return panel('Pending public activity',heading(24,62,'Waiting for the first refresh',24),100);
+  const weeks=Array(12).fill(0);
+  const lastDay=Date.parse(data.today);
+  for(const [day,count] of data.days){
+    const age=Math.floor((lastDay-Date.parse(day))/dayMs);
+    if(age>=0&&age<84)weeks[11-Math.floor(age/7)]+=count;
+  }
+  const peak=Math.max(1,...weeks);
+  const bars=weeks.map((count,i)=>{
+    const h=count?Math.max(2,Math.round(52*count/peak)):1;
+    return `<rect x="${427+i*24}" y="${97-h}" width="15" height="${h}" fill="${count?'#a5b0ff':'#4c5068'}"><title>Week ending ${dateKey(lastDay-(11-i)*7*dayMs)}: ${count} commits</title></rect>`;
+  }).join('');
+  let body=label(23,27,'PUBLIC DEFAULT BRANCHES  /  LAST 365 DAYS');
+  body+=heading(22,89,data.total,49)+label(25,114,'Authored commits');
+  body+=heading(225,89,data.streak,49)+label(227,114,'Day streak');
+  body+=`<style>@media(prefers-reduced-motion:no-preference){.bars{transform-origin:0 97px;animation:rise .9s ease-out both}@keyframes rise{from{transform:scaleY(.04)}to{transform:scaleY(1)}}}</style><g class="bars">${bars}</g>`+label(427,116,'Commits by week · last 12 weeks',13);
+  const sum=data.ranked.reduce((n,[,value])=>n+value,0);
+  const mix=data.ranked.slice(0,3).map(([name,value])=>name+' '+(100*value/sum).toFixed(1)+'%').join('   /   ');
+  body+=`<path d="M24 135h712" stroke="#484b64"/>`+label(24,161,mix||'No language data',14);
+  return panel(`${data.total} authored commits and a ${data.streak}-day streak. Weekly commits ${weeks.join(', ')}. ${mix}`,body,181);
 }
+
 
 export function renderCalendar(data) {
   let body=label(24,27,'COMMIT CALENDAR  /  UTC');
   if (!data) return panel('Calendar awaiting its first public snapshot',body+heading(24,67,'Calendar pending',22)+label(24,96,'Populated from public default-branch history.'),120);
   const start=Date.parse(data.start),end=Date.parse(data.today);
   const left=start-new Date(start).getUTCDay()*dayMs;
-  const colors=['#393f39','#87482e','#bd6441','#e88753','#ffc79e'];
+  const colors=['#313449','#5665b5','#8795ed','#c0a1e8','#ff98c7'];
   const cell=12, x0=54, y0=62;
   let previousLabel=-50;
   for (let time=start;time<=end;time+=dayMs) {
