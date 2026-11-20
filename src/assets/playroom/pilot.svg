@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 284 354" role="img" aria-labelledby="pilot-title">
+  <title id="pilot-title">Violet-haired star pilot in a cream moon suit, flashing a peace sign</title>
+  <defs>
+    <linearGradient id="shell" x2=".85" y2="1" gradientUnits="objectBoundingBox">
+      <stop stop-color="#fffce6"/><stop offset=".56" stop-color="#ffebcc"/><stop offset="1" stop-color="#aa9bcf"/>
+    </linearGradient>
+    <linearGradient id="visor" x2=".95" y2=".8" gradientUnits="objectBoundingBox">
+      <stop stop-color="#b2e5e2"/><stop offset=".49" stop-color="#7f91cd"/><stop offset="1" stop-color="#483454"/>
+    </linearGradient>
+    <linearGradient id="hair" x2=".7" y2=".9" gradientUnits="objectBoundingBox">
+      <stop stop-color="#cfbaff"/><stop offset=".45" stop-color="#a289eb"/><stop offset="1" stop-color="#6557ae"/>
+    </linearGradient>
+    <radialGradient id="skin" cx=".4" cy=".35" r=".75"><stop stop-color="#ffe5c7"/><stop offset=".78" stop-color="#ffc7a5"/><stop offset="1" stop-color="#e5958d"/></radialGradient>
+    <path id="bolt" d="M0-3a3 3 0 1 0 .01 0Z"/>
+  </defs>
+  <g stroke="#302739" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round">
+    <!-- An articulated pressure pack, two bellows and flared moon boots. -->
+    <path d="M86 186q-11 1-17 13l-3 40q1 10 13 12l13-1 7-60Z" fill="#8399bb"/>
+    <path d="m75 201-3 28m1 6-1 5" fill="none" stroke="#c6e4e2"/>
+    <path d="m110 246-10 39 36 11 9-47m9 0 2 44 35-8-11-42" fill="#8f7da9"/>
+    <path d="m109 264 25 6m-27 3 25 7m27-12 24-6m-23 15 25-7" fill="none" stroke="#514463" stroke-width="4"/>
+    <path d="M101 278q-9 4-11 15l-17 13q-8 8-5 18 2 9 11 11 23 5 53-4l5-10 2-29q-13-1-19-7Z" fill="url(#shell)"/>
+    <path d="M156 283q8 3 18 0l14-7 8 19 18 10q11 6 10 19l-5 7q-19 10-51 3l-9-6Z" fill="url(#shell)"/>
+    <path d="M68 320q25 11 66-2l-2 13q-30 9-53 4-10-2-11-15Zm92 0q36 14 63-3l1 7-5 7q-24 10-51 3l-9-6Z" fill="#736689"/>
+    <path d="m89 295 21 8 17-3-1 9-17 4-28-11Zm78 4 16-6 13 2 8 6-21 2-15 5Z" fill="#c9b8d8" stroke-width="2.5"/>
+    <path d="m73 326 9 3m4 1 5 1m113-2 10-3" fill="none" stroke="#b4a6c7" stroke-width="2.2"/>
+    <!-- Torso, shoulders and the bent peace-sign glove. -->
+    <path d="M103 182q-17 1-24 15l-12 31q-5 14 7 22 13 5 20-6l18-26Z" fill="url(#shell)"/>
+    <path d="m72 217 22 10-4 9-22-10Z" fill="#fa806b" stroke-width="2.7"/>
+    <path d="M70 229q-7 0-9 8-3 12 5 16 5 4 11 1 8 2 11-6l1-7-5-4q-6 3-7 8l-2-1 4-11Z" fill="#a79bbf"/>
+    <path d="M178 193q13-8 21 0l12 10 7-12 19 12q-6 21-20 29-8 4-18-2l-22-17Z" fill="url(#shell)"/>
+    <path d="m214 196 6-9 21 12-5 9Z" fill="#f18375"/>
+    <path d="M220 188q-11-9-8-15 3-5 8 1l5 4-1-18q0-7 4-8 5-1 6 7l3 13 5-17q3-7 7-5 5 1 2 10l-4 18q8 1 6 8l-7 12-8 3Z" fill="#f7e6d6"/>
+    <path d="m230 181 10 1q4 2 1 6l-5 1m11-11-8 2" fill="none" stroke="#907b96" stroke-width="2.4"/>
+    <path d="M112 179q17-9 48-4 23 4 31 22 4 17 1 36l-3 20q-14 15-47 15-29 0-44-14l3-19-1-27q1-21 12-29Z" fill="url(#shell)"/>
+    <path d="M184 202q-3 25-16 36l-3 20q14-3 24-10l3-23q1-11-1-18Z" fill="#b6a6c3" stroke="none"/>
+    <path d="M100 243q32 12 89-2l-1 11q-42 16-89 1Z" fill="#6e607f"/>
+    <path d="m133 246 16-1 1 12-16 1Z" fill="#d1b8f0" stroke-width="2.5"/>
+    <path d="m115 204 34-3 3 25-37 4Z" fill="#f4e6c9" stroke-width="2.7"/>
+    <path d="m119 209 24-2 1 7-24 2Z" fill="#414157" stroke-width="1.8"/>
+    <path d="m122 212 7-1m7 0 4-1" stroke="#9ae1d2" stroke-width="1.6"/>
+    <circle cx="123" cy="222" r="2.6" fill="#e87167" stroke-width="1.5"/>
+    <circle cx="132" cy="221" r="2.3" fill="#a99ae9" stroke-width="1.5"/>
+    <path d="m163 208 6-7 8 5-2 9-8 3-5-4Z" fill="#ef796c" stroke-width="2.3"/>
+    <path d="m167 211 5-5-1 6" stroke="#fff0d7" stroke-width="2" fill="none"/>
+    <path d="m108 234 16 2m52-12-9 8" stroke="#a18ba6" stroke-width="2.2"/>
+    <!-- Oversize helmet, chin ring and the spherical tinted visor. -->
+    <path d="M93 170q31-10 83-2l7 11-1 9q-16 13-49 13-28 0-47-14l-1-8Z" fill="#776884"/>
+    <path d="M87 179q42 19 94-3l2 8q-41 24-97 0Z" fill="#e8dce1" stroke-width="2.5"/>
+    <path d="m63 65-9-30" fill="none" stroke-width="5"/>
+    <circle cx="51.5" cy="28.5" r="6.5" fill="#ff8a77"/>
+    <path d="M54 63Q75 17 132 14q47-3 80 25 29 25 29 71 0 47-29 68-22 16-60 18-51 2-78-18-25-18-31-50-5-32 11-65Z" fill="url(#shell)"/>
+    <path d="M68 55q27-37 74-34 32 1 55 16l-4 5q-31-16-63-12-29 3-54 27Z" fill="#fffcf0" stroke="none"/>
+    <path d="M65 78q13-31 54-40 52-12 83 13 25 19 26 55 2 41-19 59-26 21-70 20-47-1-68-26-19-24-11-64Z" fill="#625675"/>
+    <path d="M68 83q15-31 53-39 47-10 76 11 25 18 25 53-1 36-19 52-22 20-64 18-43-2-64-24-19-22-11-57Z" fill="url(#visor)" stroke-width="2.8"/>
+    <path d="M78 121q-4-42 19-59 20-17 59-14 38 2 49 29 10 22 3 52l-13 23-96-4Z" fill="#7266a1" stroke-width="3"/>
+    <path d="M85 114q-10-5-11 7 0 14 15 17m104-24q11-9 14 3 2 14-12 20" fill="#e8a58d" stroke-width="2.8"/>
+    <path d="M88 98q12-30 44-32 37-5 59 19 14 16 10 44-4 27-25 39-18 11-44 7-26-4-37-21-12-17-7-56Z" fill="url(#skin)" stroke-width="2.8"/>
+    <path d="M92 124q0-11 11-16 8-3 14 0m42-2q10-7 20-2l6 6" fill="none" stroke="#6b4865" stroke-width="3.2"/>
+    <!-- Hand-painted irises with a high catchlight and a lavender crescent. -->
+    <path d="M96 131q2-15 13-16 10-1 15 12l-2 12q-12 8-23 1Zm61-4q1-14 12-16 12-1 17 12l-1 12q-9 10-23 4Z" fill="#fff5e7" stroke-width="2.3"/>
+    <ellipse cx="111.5" cy="129" rx="8.7" ry="12.4" fill="#493e62" stroke-width="2"/>
+    <ellipse cx="172" cy="125.5" rx="9.1" ry="12.6" fill="#493e62" stroke-width="2"/>
+    <path d="M106 134q6 5 12-3-1 8-7 8-3 1-5-5Zm61-3q7 4 12-3-1 8-8 8-3 0-4-5Z" fill="#a99cff" stroke="none"/>
+    <g fill="#fff8ee" stroke="none"><circle cx="108.5" cy="123.3" r="3.7"/><circle cx="169" cy="119.5" r="3.8"/><circle cx="116" cy="129" r="1.5"/><circle cx="176.7" cy="125" r="1.6"/></g>
+    <path d="m93 124 4 3q5-12 15-12m43 7 3 1q3-12 14-12 7 0 12 6l4-2" fill="none" stroke-width="3.3"/>
+    <path d="m140 139-2 3 3 1m-9 10q9 7 19-2" fill="none" stroke="#9e6269" stroke-width="2.5"/>
+    <g fill="none" stroke="#df938f" stroke-width="2"><path d="m96 145 2-3m3 4 3-4m78-1 3-4m1 4 3-4"/></g>
+    <path d="M80 118q-10-13-6-34 4-23 23-35 21-15 49-12 35-2 53 18 22 23 8 59-1-20-10-28-2 13-13 19 1-15-9-23-7 16-20 22l4-18q-15 16-34 20 6-7 10-19-15 14-34 17l4-10q-12 7-17 22l-2 11Z" fill="url(#hair)" stroke-width="3.2"/>
+    <path d="M83 86q10-28 30-35m-7 32q16-21 33-26m-6 19q17-15 29-15m20 6q13 7 17 21" fill="none" stroke="#d4c2ff" stroke-width="4"/>
+    <path d="m179 74 7 13 3-3-6-13Zm8-5 7 12 3-2-6-13Z" fill="#fad48a" stroke-width="1.6"/>
+    <path d="M61 108q1-29 17-44l5-1q-17 21-18 47Z" fill="#fbf8e9" opacity=".78" stroke="none"/>
+    <path d="M71 73q4-8 13-15m5-3 5-3m106 108q13-11 15-25" fill="none" stroke="#e3f3e9" stroke-width="3" opacity=".8"/>
+    <path d="M42 95q3-9 13-8l7 5-2 35-7 10q-9 0-13-10Z" fill="#c2b5cf"/>
+    <path d="m42 103 8-4 4 3-2 20-5 5-5-4Z" fill="#8f86ab" stroke-width="2.4"/>
+    <path d="M229 95q8-4 13 2l1 20-4 10-9 1Z" fill="#aaa1bd" stroke-width="2.6"/>
+    <use href="#bolt" x="75" y="162" fill="#a98cb0" stroke-width="1.5"/><use href="#bolt" x="203" y="175" fill="#a98cb0" stroke-width="1.5"/>
+    <path d="m118 181 10 2m4 1 15 1" fill="none" stroke="#d5c2d6" stroke-width="2.2"/>
+  </g>
+</svg>
