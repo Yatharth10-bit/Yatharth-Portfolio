@@ -1,4 +1,4 @@
-# Maintain Signal Studio
+# Maintaining Yatharth’s Playroom
 
 Use Node.js 22 or newer. From the repository root run `npm run build`, `npm run check`, then `npm run preview`. Open `http://127.0.0.1:4173/Yatharth-Portfolio/`. The production build has no npm dependencies.
 
@@ -8,7 +8,7 @@ Edit `src/data/portfolio.json`. Duplicate a project and give it a unique lowerca
 
 ## Change the look or content
 
-Edit the two token blocks at the top of `src/studio.css` for the dark and light palettes. Geist Sans and Geist Mono are served locally from `src/assets/fonts/`, alongside their license. Edit the portrait, contact, biography, social links and dated journey in the data file. `scripts/build.mjs` holds the shared HTML templates. `src/studio.js` handles the filter, palette, terminal, contact form, signal control and typewriter.
+Edit the Playroom light and dark token blocks in `src/studio.css` for the dark and light palettes. Geist Sans and Geist Mono are served locally from `src/assets/fonts/`, alongside their license. Edit the portrait, contact, biography, social links and dated journey in the data file. `scripts/build.mjs` holds the shared HTML templates. `src/studio.js` handles the filter, palette, terminal, contact form and After You case study typewriter.
 
 ## Check and publish
 
@@ -24,3 +24,7 @@ The account-named repository has its own `README.md` and daily workflow. Edit it
 
 **TODO:** Add an approved résumé and additional public demo URLs when available. Original ORBITAL product screenshot and any undocumented individual roles can be added when verified. The portrait is already supplied. The portfolio has no runtime analytics or API credentials.
 
+
+## The toy shelf
+
+Edit the introduction and interest strip under `playroom` in `src/data/portfolio.json`. Keep editable project facts in the same file. `scripts/playroom.mjs` builds the shelf and toy dialogs, `src/playroom.js` handles the controls, and `src/assets/playroom/` contains the original character and objects. The final palette tokens and toy styles are in `src/studio.css`. Bricolage Grotesque is self-hosted under the SIL Open Font License.

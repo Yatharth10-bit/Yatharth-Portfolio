@@ -33,6 +33,11 @@
       "Nov 2026",
       "Signal Studio",
       "Rebuilt the portfolio around five projects and an interactive signal experiment."
+    ],
+    [
+      "Nov 2026",
+      "The Playroom",
+      "Turned the portfolio into a toy shelf with a gravity experiment, a handheld puzzle and a working typewriter."
     ]
   ],
   "skills": [
@@ -155,5 +160,30 @@
       "captureWidth": 640,
       "captureHeight": 399
     }
-  ]
+  ],
+  "playroom": {
+    "intro": "I’m a developer into orbital physics, anime and games. This is my desk. Everything on it is yours to play with.",
+    "interests": [
+      [
+        "φ",
+        "Physics"
+      ],
+      [
+        "✧",
+        "Space"
+      ],
+      [
+        "{ }",
+        "Code"
+      ],
+      [
+        "✚",
+        "Games"
+      ],
+      [
+        "✿",
+        "Anime"
+      ]
+    ]
+  }
 }

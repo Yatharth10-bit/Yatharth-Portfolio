@@ -1,6 +1,5 @@
 const $ = selector => document.querySelector(selector);
 const data = JSON.parse($('#site-data').textContent);
-const motion = matchMedia('(prefers-reduced-motion: reduce)');
 const theme = $('[data-theme-toggle]');
 function updateThemeLabel(){theme.setAttribute('aria-label',`Switch to ${document.documentElement.dataset.theme==='light'?'dark':'light'} theme`);}
 function toggleTheme(){
@@ -20,27 +19,6 @@ for(const button of filters) button.addEventListener('click',()=>{
   filters.forEach(other=>other.setAttribute('aria-pressed',String(other===button)));
   $('#filter-status').textContent=`Showing ${count} projects.`;
 });
-if($('#screen')){
-  const screen=$('#screen'), sculpture=$('#sculpture');
-  const modes=[['Signal knot',0,0],['Phase shift',38,24],['Reverse phase',-46,-24]];
-  let setting=0;
-  $('#tune').addEventListener('click',()=>{
-    setting=(setting+1)%modes.length;
-    const [name,angle,hue]=modes[setting];
-    sculpture.style.setProperty('--angle',angle+'deg');
-    sculpture.style.filter=`hue-rotate(${hue}deg)`;
-    $('#instrument-title').textContent=name;
-  });
-  $('#instrument-title').setAttribute('aria-live','polite');
-  const reset=()=>{sculpture.style.setProperty('--dx','0px');sculpture.style.setProperty('--dy','0px');};
-  screen.addEventListener('pointermove',event=>{
-    if(motion.matches||event.pointerType==='touch')return;
-    const b=screen.getBoundingClientRect();
-    sculpture.style.setProperty('--dx',((event.clientX-b.left)/b.width-.5)*18+'px');
-    sculpture.style.setProperty('--dy',((event.clientY-b.top)/b.height-.5)*14+'px');
-  });
-  screen.addEventListener('pointerleave',reset);motion.addEventListener('change',reset);
-}
 const palette=$('#palette'),terminal=$('#terminal'),query=$('#query');
 let returnFocus=null;
 function openDialog(dialog){
