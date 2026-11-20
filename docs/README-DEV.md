@@ -4,11 +4,11 @@ Use Node.js 22 or newer. From the repository root run `npm run build`, `npm run 
 
 ## Add a project
 
-Edit `src/data/portfolio.json`. Duplicate a project and give it a unique lowercase URL-safe `id`. The ID is the permanent case study URL. Set its name, category (Products or Experiments), kind, description, problem, approach, and stack. Place project art in `src/assets/` and set `art` to the filename. Use the optional `repo` and `live` fields only for public destinations. For a verified screenshot, add `capture`, `captureAlt`, `captureWidth` and `captureHeight`. Record confirmed roles in `role`. The homepage, case page, sitemap and command palette are built from those entries.
+Edit `src/data/portfolio.json`. Duplicate a project and give it a unique lowercase URL-safe `id`. The ID is the permanent case study URL. Set its name, category (Products or Experiments), kind, description, problem, approach, and stack. Place project art in `src/assets/` and set `art` to the filename. Use the optional `repo` and `live` fields only for public destinations. For a verified screenshot, add `capture`, `captureAlt`, `captureWidth` and `captureHeight`. Record confirmed roles in `role`. The homepage, case page, and sitemap are built from those entries.
 
 ## Change the look or content
 
-Edit the Playroom light and dark token blocks in `src/studio.css` for the dark and light palettes. Geist Sans and Geist Mono are served locally from `src/assets/fonts/`, alongside their license. Edit the portrait, contact, biography, social links and dated journey in the data file. `scripts/build.mjs` holds the shared HTML templates. `src/studio.js` handles the filter, palette, terminal, contact form and After You case study typewriter.
+Edit the Playroom light and dark token blocks in `src/studio.css` for the dark and light palettes. Geist Sans and Geist Mono are served locally from `src/assets/fonts/`, alongside their license. Edit the portrait, contact, biography, social links and dated journey in the data file. `scripts/build.mjs` holds the shared HTML templates. `src/studio.js` handles the filter, terminal, contact form and After You case study typewriter.
 
 ## Check and publish
 
@@ -27,4 +27,4 @@ The account-named repository has its own `README.md` and daily workflow. Edit it
 
 ## The toy shelf
 
-Edit the introduction and interest strip under `playroom` in `src/data/portfolio.json`. Keep editable project facts in the same file. `scripts/playroom.mjs` builds the shelf and toy dialogs, `src/playroom.js` handles the controls, and `src/assets/playroom/` contains the original character and objects. The final palette tokens and toy styles are in `src/studio.css`. Bricolage Grotesque is self-hosted under the SIL Open Font License.
+Edit the introduction and interest strip under `playroom` in `src/data/portfolio.json`. Keep editable project facts in the same file. `scripts/playroom.mjs` builds the shelf and toy dialogs, `src/playroom.js` handles the controls and generates reachable arcade maps, `src/missions.js` runs the three pilot challenges, `src/rocket.js` draws the pointer companion, and `src/assets/playroom/` contains the original character and objects. The final palette tokens and toy styles are in `src/studio.css`. Bricolage Grotesque is self-hosted under the SIL Open Font License.

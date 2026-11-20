@@ -70,7 +70,7 @@ jobs:
             published=$(curl --max-time 12 -fsSL "${site}revision.txt?release=$GITHUB_SHA" || true)
             if [ "$published" = "$GITHUB_SHA" ]; then
               curl --retry 2 -fsSL "${site}?release=$GITHUB_SHA" -o "$RUNNER_TEMP/portfolio-home.html"
-              grep -Fq 'id="room-title"' "$RUNNER_TEMP/portfolio-home.html"
+              grep -Fq 'id="next-mission"' "$RUNNER_TEMP/portfolio-home.html"
               echo "Confirmed Yatharth’s Playroom at $site for revision $GITHUB_SHA"
               exit 0
             fi

@@ -33,10 +33,8 @@ try{
   await page.reload();
   assert.equal(await page.locator('html').getAttribute('data-theme'),'dark');
   await accessibility('dark');
-  await page.keyboard.press('Control+k');
-  await accessibility('palette');
-  await page.locator('#query').fill('OrbytMax');
-  await page.keyboard.press('Enter');
+  assert.equal(await page.locator('#palette,[data-open="palette"]').count(),0);
+  await page.locator('.card a[href="orbytmax.html"]').first().click();
   await page.waitForURL('**/orbytmax.html');
   await page.locator('[data-open="terminal"]').click();
   await page.locator('#cli input').fill('projects');
@@ -48,24 +46,69 @@ try{
   await page.getByRole('button',{name:'Experiments',exact:true}).click();
   assert.equal(await page.locator('.card:visible').count(),2);
   await page.locator('[data-toy="pilot"]').click();
-  await page.locator('#launch-pilot').click();
-  assert.match(await page.locator('#flight-result').innerText(), /1.8 m high/);
-  await page.getByLabel('Moon', {exact:true}).check();
-  await page.locator('#launch-pilot').click();
-  assert.match(await page.locator('#flight-result').innerText(), /11.1 m high/);
-  await accessibility('gravity');
+  const missionNames=[];
+  for(let round=0;round<4;round++) {
+    const name=await page.locator('#mission-name').innerText();
+    assert.notEqual(name,missionNames.at(-1)); missionNames.push(name);
+    const board=page.locator('#mission-board');
+    if(name==='Echo Relay'){
+      const symbols=(await board.locator('.radio-code').getAttribute('aria-label')).split(', ');
+      await board.getByRole('button',{name:'Cover the signal'}).click();
+      for(const symbol of symbols) await board.getByRole('button',{name:symbol,exact:true}).click();
+    }else if(name==='Signal Sweep'){
+      const brief=await page.locator('#mission-brief').innerText();
+      const glyph=brief.match(/\(([^)]+)\)/)[1];
+      await board.getByText(glyph,{exact:true}).click();
+    }else{
+      const headings=['north','southeast','southwest'];
+      const state=(await board.locator('button').evaluateAll(bs=>bs.map(b=>b.getAttribute('aria-label').split(' ').at(-1)))).map(h=>headings.indexOf(h));
+      let solved=false;
+      for(let code=0;code<27&&!solved;code++){
+        const turns=[code%3,Math.floor(code/3)%3,Math.floor(code/9)];
+        if(!state.every((v,i)=>(v+turns[i]+turns[(i+2)%3])%3===0)) continue;
+        for(const [i,n] of turns.entries()) for(let t=0;t<n;t++) await board.locator('button').nth(i).click();
+        solved=true;
+      }
+      assert.ok(solved);
+    }
+    assert.equal(await page.locator('#next-mission').innerText(),'Play again');
+    if(round===0) await accessibility('mission');
+    await page.locator('#next-mission').click();
+  }
+  assert.equal(new Set(missionNames).size,3);
   await page.keyboard.press('Escape');
   const consoleToy=page.locator('[data-toy="handheld"]');
   await consoleToy.focus();
   await page.keyboard.press('ArrowRight');
   assert.ok(await consoleToy.evaluate(el=>Boolean(el.style.translate)));
   await page.keyboard.press('Enter');
-  for(const direction of ['Down','Down','Down','Down','Right','Right','Right','Right','Up','Up','Up','Up']) {
-    await page.keyboard.press('Arrow'+direction);
+  await page.locator('#toy-handheld[open] .tile-ship').waitFor();
+  let previousStart;
+  for(let round=0;round<12;round++){
+    const cells=await page.locator('#star-grid .tile').evaluateAll(tiles=>tiles.map(t=>t.classList[1]));
+    let at=cells.indexOf('tile-ship');
+    assert.notEqual(at,previousStart);previousStart=at;
+    const stars=cells.flatMap((v,i)=>v==='tile-star'?[i]:[]);
+    assert.equal(stars.length,3);
+    for(const goal of stars){
+      const search=[[at,[]]], visited=new Set([at]);
+      let route;
+      for(const [index,path] of search){
+        if(index===goal){route=path;break;}
+        const x=index%5,y=Math.floor(index/5);
+        for(const [step,nx,ny] of [['Up',x,y-1],['Down',x,y+1],['Left',x-1,y],['Right',x+1,y]]){
+          const next=ny*5+nx;
+          if(nx<0||nx>=5||ny<0||ny>=5||visited.has(next)||cells[next]==='tile-rock') continue;
+          visited.add(next);search.push([next,[...path,step]]);
+        }
+      }
+      assert.ok(route,'every star must be reachable');
+      if(round===0) for(const direction of route) await page.keyboard.press('Arrow'+direction);
+      at=goal;
+    }
+    if(round===0) assert.match(await page.locator('#game-result').innerText(),/Delivery complete/);
+    await page.locator('#restart-game').click();
   }
-  assert.match(await page.locator('#game-result').innerText(), /Delivery complete/);
-  await page.locator('#restart-game').click();
-  assert.ok((await page.locator('#game-result').innerText()).includes('0/3 stars'));
   await accessibility('arcade');
   await page.keyboard.press('Escape');
   await page.locator('[data-toy="typewriter"]').click();
@@ -81,6 +124,18 @@ try{
   await page.getByLabel('Message',{exact:true}).fill('Simulated delivery');
   await page.locator('#contact-form button').click();
   await page.waitForFunction(()=>document.querySelector('#form-status').textContent.includes('accepted'));
+  assert.equal(await page.locator('.ribbon-track').evaluate(el=>getComputedStyle(el).animationName),'none');
+  await page.emulateMedia({reducedMotion:'no-preference'});
+  await page.locator('.ribbon-switch').click();
+  assert.equal(await page.locator('.ribbon-track').evaluate(el=>getComputedStyle(el).animationPlayState),'paused');
+  await page.locator('.ribbon-switch').click();
+  assert.equal(await page.locator('.ribbon-track').evaluate(el=>getComputedStyle(el).animationPlayState),'running');
+  await page.evaluate(()=>window.scrollTo(0,0));
+  await page.mouse.move(25,100); await page.mouse.move(300,120);
+  await page.waitForFunction(()=>document.querySelector('.jet-flame')?.transform.baseVal.consolidate()?.matrix.a>.40);
+  await page.waitForFunction(()=>document.querySelector('.jet-flame')?.transform.baseVal.consolidate()?.matrix.a<.37);
+  await page.emulateMedia({reducedMotion:'reduce'});
+  await page.waitForFunction(()=>document.querySelector('.cursor-rocket')?.hidden);
   assert.deepEqual(errors,[]);
 }finally{await browser.close();}
 const command=path.join(process.env.AUDIT_PORTFOLIO,'node_modules/lighthouse/cli/index.js');
@@ -88,4 +143,3 @@ const status=spawnSync(process.execPath,[command,url,'--quiet','--chrome-flags=-
 if(status.status!==0)throw Error('Lighthouse failed to complete');
 const report=JSON.parse(await fs.readFile('.audit/lighthouse.json','utf8'));
 for(const [key,category] of Object.entries(report.categories)){console.log(key,Math.round(category.score*100));assert.ok(category.score>=.9,`${key} below 90`);}
-
