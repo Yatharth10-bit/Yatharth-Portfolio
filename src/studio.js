@@ -1,3 +1,4 @@
+import './rocket.js';
 const $ = selector => document.querySelector(selector);
 const data = JSON.parse($('#site-data').textContent);
 const theme = $('[data-theme-toggle]');
@@ -19,57 +20,15 @@ for(const button of filters) button.addEventListener('click',()=>{
   filters.forEach(other=>other.setAttribute('aria-pressed',String(other===button)));
   $('#filter-status').textContent=`Showing ${count} projects.`;
 });
-const palette=$('#palette'),terminal=$('#terminal'),query=$('#query');
-let returnFocus=null;
-function openDialog(dialog){
-  const old=document.querySelector('dialog[open]');
-  if(old===dialog)return;
-  if(old)old.close();else returnFocus=document.activeElement;
-  if(dialog===palette){query.value='';renderCommands();}
-  dialog.showModal();(dialog===palette?query:$('#cli input')).focus();
-}
-for(const button of document.querySelectorAll('[data-open]'))button.addEventListener('click',()=>openDialog(document.getElementById(button.dataset.open)));
-for(const dialog of [palette,terminal]){
-  dialog.querySelector('[data-close]').addEventListener('click',()=>dialog.close());
-  dialog.addEventListener('close',()=>{if(!document.querySelector('dialog[open]')&&returnFocus?.isConnected)returnFocus.focus({preventScroll:true});});
-}
-document.addEventListener('keydown',event=>{
-  if((event.ctrlKey||event.metaKey)&&event.key.toLowerCase()==='k'){event.preventDefault();if(palette.open)palette.close();else openDialog(palette);}
-});
-const go=path=>{palette.close();location.href=path;};
-const commands=[
-  ...['Work','About','Contact'].map(k=>[k,'Section',()=>go(data.home+'#'+k.toLowerCase())]),
-  ...data.projects.map(p=>[p.name,'Project',()=>go(p.path)]),
-  ['Toggle theme','Display',()=>{toggleTheme();palette.close();}],
-  ['Copy email','Contact',async()=>{try{await navigator.clipboard.writeText(data.email);query.value='';$('#commands').textContent='Email address copied.';}catch{$('#commands').textContent=data.email;}}],
-  ['Open terminal','Tool',()=>openDialog(terminal)]
-];
-function renderCommands(){
-  const list=$('#commands');list.replaceChildren();
-  const needle=query.value.trim().toLowerCase();
-  for(const [title,group,action] of commands.filter(([name,group])=>(name+' '+group).toLowerCase().includes(needle))){
-    const b=document.createElement('button'),meta=document.createElement('small');
-    b.append(title);meta.textContent=group;b.append(meta);
-    b.addEventListener('click',action);list.append(b);
-  }
-  if(!list.children.length)list.textContent='No matching commands.';
-}
-query.addEventListener('input',renderCommands);
-palette.addEventListener('keydown',event=>{
-  const buttons=[...document.querySelectorAll('#commands button')];
-  if(!buttons.length)return;
-  if(event.key==='Enter'&&document.activeElement===query){event.preventDefault();buttons[0].click();}
-  if(['ArrowUp','ArrowDown'].includes(event.key)){
-    event.preventDefault();
-    const pos=buttons.indexOf(document.activeElement);
-    const index=pos<0?(event.key==='ArrowDown'?0:buttons.length-1):(pos+(event.key==='ArrowDown'?1:-1)+buttons.length)%buttons.length;
-    buttons[index].focus();
-  }
-});
+const terminal = $('#terminal');
+const terminalButton = $('[data-open="terminal"]');
+terminalButton.addEventListener('click', () => { terminal.showModal(); $('#cli input').focus(); });
+terminal.querySelector('[data-close]').addEventListener('click', () => terminal.close());
+terminal.addEventListener('close', () => terminalButton.focus({preventScroll:true}));
 $('#cli').addEventListener('submit',event=>{
   event.preventDefault();const input=event.currentTarget.elements.command;
   const cmd=input.value.trim().toLowerCase();if(!cmd)return;
-  const replies={help:'help · projects · about · contact · sudo hire-me · clear',projects:data.projects.map(p=>p.name).join(' / '),about:'Yatharth Srivastav — student developer and designer in India.',contact:data.email,'sudo hire-me':`Start a conversation at ${data.email}`};
+  const replies={help:'help · projects · about · contact · sudo hire-me · clear',projects:data.projects.join(' / '),about:'Yatharth Srivastav — student developer and designer in India.',contact:data.email,'sudo hire-me':`Start a conversation at ${data.email}`};
   const history=$('#history');
   if(cmd==='clear')history.replaceChildren();
   else{const out=document.createElement('p');out.textContent=`$ ${cmd}\n${Object.hasOwn(replies,cmd)?replies[cmd]:'Unknown command. Try help.'}`;history.append(out);}
@@ -94,4 +53,3 @@ $('#writer')?.addEventListener('submit',event=>{
   const paper=document.createElement('p');paper.textContent=message;paper.className='paper';
   paper.style.paddingInlineStart=(Number($('#carriage').value)+4)+'%';$('#prints').prepend(paper);note.value='';
 });
-
