@@ -24,7 +24,7 @@ const terminal = $('#terminal');
 const terminalButton = $('[data-open="terminal"]');
 terminalButton.addEventListener('click', () => { terminal.showModal(); $('#cli input').focus(); });
 terminal.querySelector('[data-close]').addEventListener('click', () => terminal.close());
-terminal.addEventListener('close', () => terminalButton.focus({preventScroll:true}));
+terminal.addEventListener('close', () => { if (document.activeElement === document.body) terminalButton.focus({preventScroll:true}); });
 $('#cli').addEventListener('submit',event=>{
   event.preventDefault();const input=event.currentTarget.elements.command;
   const cmd=input.value.trim().toLowerCase();if(!cmd)return;

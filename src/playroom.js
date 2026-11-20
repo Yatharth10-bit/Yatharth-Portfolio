@@ -48,7 +48,7 @@ for (const button of shelf.querySelectorAll('[data-toy]')) {
   });
   dialog.querySelector('.toy-close').addEventListener('click', () => dialog.close());
   dialog.addEventListener('close', () => {
-    if (!document.querySelector('dialog[open]')) button.focus({preventScroll:true});
+    if (document.activeElement === document.body) button.focus({preventScroll:true});
   });
   window.addEventListener('resize', () => { x = y = 0; button.style.translate = ''; });
 }

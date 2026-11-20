@@ -82,6 +82,7 @@ try{
   await page.keyboard.press('ArrowRight');
   assert.ok(await consoleToy.evaluate(el=>Boolean(el.style.translate)));
   await page.keyboard.press('Enter');
+  await page.locator('#toy-handheld[open] .tile-ship').waitFor();
   let previousStart;
   for(let round=0;round<12;round++){
     const cells=await page.locator('#star-grid .tile').evaluateAll(tiles=>tiles.map(t=>t.classList[1]));
