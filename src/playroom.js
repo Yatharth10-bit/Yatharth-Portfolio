@@ -1,6 +1,8 @@
+import { installMissions } from './missions.js';
 const $ = selector => document.querySelector(selector);
 const reduce = matchMedia('(prefers-reduced-motion: reduce)');
 const shelf = $('.toy-scene');
+const newMission = installMissions($('#toy-pilot'));
 const clamp = (n, min, max) => Math.min(max, Math.max(min, n));
 
 // Buttons stay inside the shelf and retain normal Enter, Space and tap activation.
@@ -39,6 +41,8 @@ for (const button of shelf.querySelectorAll('[data-toy]')) {
   });
   button.addEventListener('click', event => {
     if (event.detail && moved) { moved = false; return; }
+    if (button.dataset.toy === 'pilot') newMission();
+    if (button.dataset.toy === 'handheld') restart();
     dialog.showModal();
     (dialog.querySelector('textarea') || dialog.querySelector('.toy-close')).focus({preventScroll:true});
   });
@@ -49,41 +53,16 @@ for (const button of shelf.querySelectorAll('[data-toy]')) {
   window.addEventListener('resize', () => { x = y = 0; button.style.translate = ''; });
 }
 
-const pilot = $('#flight-pilot'), flightPath = $('#flight-path'), result = $('#flight-result');
-let flightFrame;
-function world() { return document.querySelector('input[name="world"]:checked').value; }
-function gravity() { return world() === 'earth' ? 9.81 : 1.62; }
-function position(t, g) { return [20 + 35 * t, 148 - 10 * (6 * t - g * t * t / 2)]; }
-function drawPilot(t, g) {
-  const [x, y] = position(t, g);
-  pilot.setAttribute('transform', 'translate(' + (x-20) + ',' + (y-48) + ')');
+// Grow one connected region, so every star can be reached from the ship.
+let field, previousStart = -1;
+function neighbors(cell) {
+  const x = cell % 5, y = Math.floor(cell / 5);
+  return [[x-1,y],[x+1,y],[x,y-1],[x,y+1]]
+    .filter(([col,row])=>col>=0 && col<5 && row>=0 && row<5)
+    .map(([col,row])=>row*5+col);
 }
-function resetFlight() {
-  cancelAnimationFrame(flightFrame);
-  flightPath.removeAttribute('d');
-  drawPilot(0, gravity());
-  result.textContent = '';
-}
-function launch() {
-  resetFlight();
-  const g = gravity(), duration = 12 / g;
-  const points = Array.from({length: 51}, (_, i) => position(duration * i / 50,g).map(n=>n.toFixed(2)).join(' '));
-  flightPath.setAttribute('d', 'M' + points.join(' L'));
-  result.textContent = (world() === 'earth' ? 'Earth' : 'Moon') + ' · ' + (18/g).toFixed(1) + ' m high · ' + duration.toFixed(1) + ' s in flight.';
-  const start = performance.now();
-  function frame(now) {
-    const t = reduce.matches ? duration : Math.min(duration, (now - start) / 1000);
-    drawPilot(t, g);
-    if (t < duration) flightFrame = requestAnimationFrame(frame);
-  }
-  frame(start);
-}
-$('#launch-pilot').addEventListener('click', launch);
-document.querySelectorAll('[name="world"]').forEach(input => input.addEventListener('change', resetFlight));
-$('#toy-pilot').addEventListener('close', resetFlight);
-resetFlight();
-
-const field = ['S..#*', '.#...', '*.#..', '.#.#.', '....*'];
+const pick = items => items[Math.floor(Math.random()*items.length)];
+const coordinate = cell => [cell % 5, Math.floor(cell / 5)];
 const directions = {up:[0,-1],down:[0,1],left:[-1,0],right:[1,0]};
 const keys = {ArrowUp:'up',ArrowDown:'down',ArrowLeft:'left',ArrowRight:'right'};
 let ship, stars, steps;
@@ -111,7 +90,23 @@ function drawGame(message) {
   const help = document.createElement('span'); help.className='sr'; help.textContent=' '+description; output.append(help);
 }
 function restart() {
-  ship = [0,0]; stars = new Set(['4,0','0,2','4,4']); steps = 0; drawGame('');
+  const cells = Array.from({length:25}, (_,i)=>i);
+  const start = pick(cells.filter(cell=>cell!==previousStart));
+  previousStart=start; ship=coordinate(start);
+  const open = new Set([start]), frontier = new Set(neighbors(start));
+  const floorSize = 16 + Math.floor(Math.random()*5);
+  while(open.size < floorSize) {
+    const cell = pick([...frontier]); frontier.delete(cell); open.add(cell);
+    for(const n of neighbors(cell)) if(!open.has(n)) frontier.add(n);
+  }
+  field = Array.from({length:5}, (_,row)=>cells.slice(row*5,row*5+5).map(i=>open.has(i)?'.':'#').join(''));
+  const candidates = [...open].filter(i=>i !== start && !neighbors(start).includes(i));
+  stars=new Set();
+  for(let i=0;i<3;i++){
+    const index=Math.floor(Math.random()*candidates.length);
+    stars.add(coordinate(candidates.splice(index,1)[0]).join(','));
+  }
+  steps=0; $('#restart-game').textContent='Restart'; drawGame('');
 }
 function steer(dir) {
   if (!stars.size) return;
@@ -119,6 +114,7 @@ function steer(dir) {
   if (!tile || tile === '#') { drawGame('Blocked.'); return; }
   ship = [x,y]; steps++;
   const collected = stars.delete(ship.join(','));
+  if(!stars.size) $('#restart-game').textContent='Play again';
   drawGame(!stars.size ? 'Delivery complete!' : collected ? 'Star collected!' : '');
 }
 $('#toy-handheld').addEventListener('keydown', event => {
@@ -126,7 +122,6 @@ $('#toy-handheld').addEventListener('keydown', event => {
 });
 document.querySelectorAll('[data-steer]').forEach(b => b.addEventListener('click',()=>steer(b.dataset.steer)));
 $('#restart-game').addEventListener('click',restart);
-restart();
 
 const input = $('#desk-note'), print = $('#typed-note'), save = $('#save-note');
 let typingTimer, fileURL, fullText = '';
@@ -153,3 +148,13 @@ $('#desk-writer').addEventListener('submit', event => {
   $('#type-status').textContent = ''; print.classList.add('typing'); type();
 });
 $('#toy-typewriter').addEventListener('close', finishTyping);
+
+const ribbon = $('.interest-strip');
+const ribbonSwitch = ribbon.querySelector('.ribbon-switch');
+function pauseRibbon(paused) {
+  ribbon.dataset.paused=String(paused);
+  ribbonSwitch.setAttribute('aria-label',paused?'Resume interest strip':'Pause interest strip');
+  ribbonSwitch.firstElementChild.textContent=paused?'▶':'Ⅱ';
+}
+pauseRibbon(false);
+ribbonSwitch.addEventListener('click',()=>pauseRibbon(ribbon.dataset.paused!=='true'));
