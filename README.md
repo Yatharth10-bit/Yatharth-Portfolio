@@ -1,41 +1,33 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/banner-dark.svg">
-  <img src="assets/banner-light.svg" width="100%" alt="Yatharth Srivastav — developer and designer in India.">
+  <img src="assets/banner-light.svg" width="100%" alt="Yatharth Srivastav, developer and designer in India, beside his blue halftone portrait.">
 </picture>
 
-I’m Yatharth, a student developer and designer in India. I build things I want to use, from a satellite pass finder to a desktop assistant that understands hand gestures. I’m learning how to make complex data feel natural to explore.
+I’m a student developer and designer in India. I like building interfaces for things you usually can’t see. In **OrbytMax**, you can look up the next satellite pass over your city. In **Ultron**, a hand gesture becomes a desktop shortcut.
 
-[![Explore my interactive portfolio](assets/explore.svg)](https://yatharth10-bit.github.io/Yatharth-Portfolio/)
+[![Explore my portfolio](assets/explore.svg)](https://yatharth10-bit.github.io/Yatharth-Portfolio/)
 
-## Pick a project
+## Selected work
 
-<details open>
-<summary><strong>Explore space</strong></summary>
-
-[OrbytMax](https://github.com/Yatharth10-bit/orbytmax-app) brings satellite passes, mission libraries, and orbit lessons together. [ORBITAL](https://github.com/Yatharth10-bit/Satellite-tracker) lets you follow individual satellites around a Three.js globe.
-
-</details>
+<a href="https://github.com/Yatharth10-bit/orbytmax-app"><img src="assets/nextjs.svg" width="32%" alt="OrbytMax · satellite pass finder built with Next.js"></a>
+<a href="https://yatharth10-bit.github.io/Yatharth-Portfolio/ultron.html"><img src="assets/python.svg" width="32%" alt="Ultron · local voice and gesture assistant built with Python"></a>
+<a href="https://github.com/Yatharth10-bit/Satellite-tracker"><img src="assets/threejs.svg" width="32%" alt="ORBITAL · interactive satellite globe built with Three.js"></a>
 
 <details>
-<summary><strong>Look inside a prototype</strong></summary>
+<summary><strong>Two more projects to try</strong></summary>
 
-[ClaimGuard](https://github.com/Yatharth10-bit/claimguard) puts product claims, review flags, and suggested rewrites in one workspace. [Ultron](https://yatharth10-bit.github.io/Yatharth-Portfolio/ultron.html) maps local speech and hand gestures to actions on a Windows desktop.
+- [ClaimGuard](https://github.com/Yatharth10-bit/claimguard) brings product claims, regulatory updates and suggested rewrites into one review workspace.
+- [After You](https://yatharth10-bit.github.io/Yatharth-Portfolio/afteryou.html#typewriter) is a browser typewriter. Move the carriage, write a note and print a snapshot.
 
 </details>
+
+## Activity in public
+
+![Authored commits, active streak, weekly commit activity and leading languages](assets/generated/stats.svg)
+![Daily authored commits in public default-branch history](assets/generated/calendar.svg)
 
 <details>
-<summary><strong>Try a small experiment</strong></summary>
-
-[After You](https://yatharth10-bit.github.io/Yatharth-Portfolio/afteryou.html) is a typewriter you can play with in your browser.
-
-</details>
-
-[![Next.js — OrbytMax](assets/nextjs.svg)](https://github.com/Yatharth10-bit/orbytmax-app) [![Python — Ultron](assets/python.svg)](https://yatharth10-bit.github.io/Yatharth-Portfolio/ultron.html) [![Three.js — ORBITAL](assets/threejs.svg)](https://github.com/Yatharth10-bit/Satellite-tracker)
-
-## On the workbench
-
-![Commit count, current daily streak and leading languages across owned public non-fork repositories](assets/generated/stats.svg)
-![Calendar of daily authored commits in the same public repositories](assets/generated/calendar.svg)
+<summary>Recent repository activity</summary>
 
 <!-- signal:recent:start -->
 Public default branches · 44 authored commits · 1-day active streak · updated 2026-11-19 (UTC).
@@ -48,5 +40,7 @@ Public default branches · 44 authored commits · 1-day active streak · updated
 - [orbytmax-app](https://github.com/Yatharth10-bit/orbytmax-app) · pushed 2026-11-19
 <!-- signal:recent:end -->
 
-[Email me](mailto:yatharthlegend252@gmail.com) · [Instagram](https://www.instagram.com/yatharthsrivastav_/) · [YouTube](https://www.youtube.com/@yatharthsrivastav10)
+</details>
+
+[Email](mailto:yatharthlegend252@gmail.com) · [Instagram](https://www.instagram.com/yatharthsrivastav_/) · [YouTube](https://www.youtube.com/@yatharthsrivastav10)
 
