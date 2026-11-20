@@ -28,11 +28,11 @@ try{
     await page.screenshot({path:`.audit/home-${width}.png`});
   }
   await page.setViewportSize({width:390,height:844});
-  await accessibility('dark');
+  await accessibility('light');
   await page.locator('[data-theme-toggle]').click();
   await page.reload();
-  assert.equal(await page.locator('html').getAttribute('data-theme'),'light');
-  await accessibility('light');
+  assert.equal(await page.locator('html').getAttribute('data-theme'),'dark');
+  await accessibility('dark');
   await page.keyboard.press('Control+k');
   await accessibility('palette');
   await page.locator('#query').fill('OrbytMax');
@@ -47,8 +47,34 @@ try{
   await page.goto(url);
   await page.getByRole('button',{name:'Experiments',exact:true}).click();
   assert.equal(await page.locator('.card:visible').count(),2);
-  await page.locator('#tune').click();
-  assert.equal(await page.locator('#instrument-title').innerText(),'Phase shift');
+  await page.locator('[data-toy="pilot"]').click();
+  await page.locator('#launch-pilot').click();
+  assert.match(await page.locator('#flight-result').innerText(), /1.8 m high/);
+  await page.getByLabel('Moon', {exact:true}).check();
+  await page.locator('#launch-pilot').click();
+  assert.match(await page.locator('#flight-result').innerText(), /11.1 m high/);
+  await accessibility('gravity');
+  await page.keyboard.press('Escape');
+  const consoleToy=page.locator('[data-toy="handheld"]');
+  await consoleToy.focus();
+  await page.keyboard.press('ArrowRight');
+  assert.ok(await consoleToy.evaluate(el=>Boolean(el.style.translate)));
+  await page.keyboard.press('Enter');
+  for(const direction of ['Down','Down','Down','Down','Right','Right','Right','Right','Up','Up','Up','Up']) {
+    await page.keyboard.press('Arrow'+direction);
+  }
+  assert.match(await page.locator('#game-result').innerText(), /Delivery complete/);
+  await page.locator('#restart-game').click();
+  assert.ok((await page.locator('#game-result').innerText()).includes('0/3 stars'));
+  await accessibility('arcade');
+  await page.keyboard.press('Escape');
+  await page.locator('[data-toy="typewriter"]').click();
+  await page.locator('#desk-note').fill('An orbit on paper.');
+  await page.locator('#desk-writer button').click();
+  assert.equal(await page.locator('#typed-note').innerText(),'An orbit on paper.');
+  assert.equal(await page.locator('#save-note').getAttribute('download'),'playroom-note.txt');
+  await accessibility('typewriter');
+  await page.keyboard.press('Escape');
   await page.route('https://formsubmit.co/ajax/**',route=>route.fulfill({json:{success:'true'}}));
   await page.getByLabel('Your name').fill('Local test');
   await page.getByLabel('Email address').fill('test@example.invalid');

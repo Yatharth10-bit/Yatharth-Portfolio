@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 330 254" role="img" aria-labelledby="writer-title">
+  <title id="writer-title">Seafoam portable typewriter with ivory round keys and a sheet of illustrated star charts</title>
+  <defs>
+    <linearGradient id="enamel" x2=".65" y2="1"><stop stop-color="#c5e9d9"/><stop offset=".48" stop-color="#9dd5c7"/><stop offset="1" stop-color="#73b4b2"/></linearGradient>
+    <linearGradient id="paper" x2=".6" y2="1"><stop stop-color="#fffbed"/><stop offset=".76" stop-color="#f9ebcd"/><stop offset="1" stop-color="#d5ccbe"/></linearGradient>
+    <linearGradient id="shadow" x2="1" y2=".25"><stop stop-color="#639d9b"/><stop offset=".68" stop-color="#7db6ab"/><stop offset="1" stop-color="#518c94"/></linearGradient>
+    <g id="key" stroke="#443849" stroke-linejoin="round">
+      <path d="M-6-.7q0-4 6-4t6 4v2.3q-.6 3.6-6.1 3.6-5.6 0-5.9-3.6Z" fill="#827787" stroke-width="1.45"/>
+      <ellipse cy="-1.2" rx="6.05" ry="3.8" fill="#faecd7" stroke-width="1.35"/>
+      <path d="m-1.4-1.5 2.7-.1" stroke-width=".9"/>
+    </g>
+    <g id="row">
+      <use href="#key"/><use href="#key" x="14.8"/><use href="#key" x="29.6"/><use href="#key" x="44.4"/><use href="#key" x="59.2"/><use href="#key" x="74"/><use href="#key" x="88.8"/><use href="#key" x="103.6"/><use href="#key" x="118.4"/><use href="#key" x="133.2"/>
+    </g>
+  </defs>
+  <g stroke="#352c3e" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.2">
+    <!-- Fold-up paper table, slightly cockled page and the carriage levers. -->
+    <path d="M83 109 92 55l13-2 133 6 3 53-8 11Z" fill="#8cb6b2"/>
+    <path d="M99 105q6-39 2-62-1-9-4-20l86-9q26-3 43 0 14 24 13 52l-2 42Z" fill="url(#paper)"/>
+    <path d="M217 14q9-1 18 1 6 4 8 10l-11-1-5 1Z" fill="#e6d8c3" stroke-width="2.5"/>
+    <path d="M103 34q9 24 4 61m102-73 9-.3" stroke="#fffef0" stroke-width="3" fill="none"/>
+    <g transform="rotate(-4 163 60)" stroke="#777185" fill="none" stroke-width="2">
+      <path d="M116 43h23m4 0h6m-33 6h40m-40 6h17m4 0h9" />
+      <path d="M122 73q9-9 22-1t23 4" stroke-dasharray="2 4"/>
+      <ellipse cx="187" cy="55" rx="9" ry="8.5" fill="#c2b1db"/>
+      <path d="M178 54q-15 11 5 6 12-3 17-9 2-4-6-1" stroke="#9c82a0"/>
+      <path d="m204 36 1.5 3.5 3.5 1-3.5 1.5-1.5 3.5-1-3.5-3.5-1.5 3.5-1Z" fill="#c8b181" stroke-width="1"/>
+      <path d="m166 38 3 1m35 30 3 1"/>
+      <path d="M115 85h31m5 0h19m4 0h12" stroke-width="1.5"/>
+    </g>
+    <path d="m66 109-8-8 3-9 11-3 5 7-1 12Z" fill="#aec7c1"/>
+    <path d="m63 99-14-6-9-11-17-1-1 5 13 1 10 14 17 7Z" fill="#bab5bf" stroke-width="2.7"/>
+    <path d="m22 80 13 .8 2 4-16 1-3-3Z" fill="#9d839b" stroke-width="2.4"/>
+    <path d="M64 101q1-7 10-8l172 5q8 1 9 8l-1 7-191-4Z" fill="#504557"/>
+    <path d="M78 100q80-1 157 4" fill="none" stroke="#8d8490" stroke-width="2.5"/>
+    <path d="m57 100 12 1-1 8-12-1m189-2 17 1-1 7-17-1" fill="#bbadbb" stroke-width="2.2"/>
+    <path d="M49 96q1-3 6-3l6 1 3 6-2 11-4 2-7-2q-4-2-3-7Z" fill="#737080" stroke-width="2.6"/>
+    <path d="M258 102q2-4 6-4l6 2q5 2 3 12-1 6-5 7l-7-1-4-5Z" fill="#777383" stroke-width="2.6"/>
+    <path d="m53 97-2 10m5-9-2 11m210-7-3 10m7-9-3 12" fill="none" stroke="#b6aaba" stroke-width="1.5"/>
+    <!-- Three-quarter enamel shell. The scalloped keyboard sits in a dark recess. -->
+    <path d="M60 110q1-8 11-8l170 5q10 0 17 8l15 18 34 45q5 7 3 19l-6 23q-2 8-12 11l-35 11q-8 2-16 1L44 233q-11-1-16-9l-6-14q-2-8 3-17l30-62Z" fill="url(#shadow)"/>
+    <path d="m266 144 36 40q5 5 3 13l-5 20q-1 7-9 10l-33 10 8-29-4-18Z" fill="#6a9f9e" stroke="none"/>
+    <path d="M58 110q2-9 12-9l167 5q13 0 21 9l12 22q4 6 0 11l-7 4 27 30q5 7 4 13l-4 12q-3 6-10 8l-25 8q-9 3-17 2L40 214q-11-.5-15-7-2-6 2-13l26-51q3-8 2-14Z" fill="url(#enamel)"/>
+    <path d="m31 210 9 4 198 11q11 1 18-2l27-9-7 12-25 8-209-12Z" fill="#a5cdc0" stroke="none"/>
+    <path d="m34 218 11 3 191 11q13 1 21-2l28-9m-16-73-11 3" fill="none" stroke="#4e8189" stroke-width="2.1"/>
+    <path d="m61 115 2-7 6-2 63 2m-101 92 5-9m4-7 15-30" fill="none" stroke="#e2f1da" stroke-width="3.5"/>
+    <path d="M72 108q3 0 7 1l27 7q5 2 10 8l7 7 57 3 13-9q4-4 12-4l42 2 5 11-186-7 2-11Z" fill="#649a9f" stroke-width="2.8"/>
+    <path d="m89 113 121 4-17 4q-8 2-14 10l-55-2-9-8Z" fill="#49404f" stroke-width="2.4"/>
+    <path d="M121 120q17-10 51-5l14 5-12 8-40-1Z" fill="#b4a6aa" stroke-width="2.2"/>
+    <g fill="none" stroke="#6a5c71" stroke-width="1.4"><path d="m129 119 11 6m-5-8 9 8m-3-9 6 9m-1-10 4 10m1-10 2 10m4-10-1 10m6-10-3 10m9-9-6 9m12-8-8 8m12-7-8 7"/></g>
+    <path d="m150 110 2-10 7 .3 1 11" fill="#d6cdca" stroke-width="2.2"/>
+    <path d="m150 98 11 .4" stroke="#8f8190" stroke-width="3"/>
+    <path d="m71 134 165 7 28 43q4 7-4 10l-13 3-194-10q-10-.5-6-8l19-40q2-4 5-5Z" fill="#595160" stroke-width="3"/>
+    <path d="m70 139 163 7 22 33-203-9Z" fill="#716776" stroke="none"/>
+    <g transform="matrix(1.05 .047 -.06 .99 80 145)"><use href="#row"/></g>
+    <g transform="matrix(1.08 .047 -.06 1 73 155)"><use href="#row"/><use href="#key" x="148"/></g>
+    <g transform="matrix(1.08 .047 -.06 1 66 166)"><use href="#row"/><use href="#key" x="148"/><use href="#key" x="162.8"/></g>
+    <g transform="matrix(1.12 .05 -.06 1 58 178)"><use href="#key"/><use href="#key" x="14.8"/><use href="#key" x="29.6"/>
+      <path d="M42-4h78q4 0 4 4v2q-.5 3-5 3H43q-5 0-5-3V0q0-3 4-4Z" fill="#b4a392" stroke-width="1.7"/>
+      <path d="M42-4h78q4 0 4 3t-5 3H43q-4 0-4-3t3-3Z" fill="#fae7c5" stroke-width="1.2"/>
+      <use href="#key" x="135"/><use href="#key" x="150"/><use href="#key" x="165"/>
+    </g>
+    <!-- Stamped comet emblem and a chrome lip above the feet. -->
+    <path d="m206 204 30 1.5 3 4-4 3-30-1-3-4Z" fill="#e7dac6" stroke-width="1.8"/>
+    <path d="m209 207 10 .5m-7 1 6 .5" fill="none" stroke="#a28f9e" stroke-width="1.2"/>
+    <path d="m226 205.8 1.3 2.6 2.6.2-1.8 1.3.4 1.6-2.7-1.1-1.7.5.5-2-1.6-1 2-.3Z" fill="#c37877" stroke="none"/>
+    <path d="m46 233 15 .9-1 4-13-.6Zm216 6 14-4-.6 4-13 4Z" fill="#62576a" stroke-width="2"/>
+  </g>
+</svg>

@@ -1,10 +1,10 @@
-# Yatharth Srivastav · Signal Studio
+# Yatharth Srivastav · Yatharth’s Playroom
 
 [Explore the interactive portfolio](https://yatharth10-bit.github.io/Yatharth-Portfolio/)
 
-![Signal Studio with its interactive wireframe knot and selected projects](docs/portfolio-desktop.webp)
+![Yatharth’s Playroom with its illustrated toy shelf and selected projects](docs/portfolio-desktop.webp)
 
-Five case studies connect satellite tracking, a local Windows voice assistant, compliance review, orbital visualization and a playful browser typewriter. Press **Ctrl/Cmd + K** to jump between them. Tune the signal, switch themes or open the footer terminal.
+Five case studies connect satellite tracking, a local Windows voice assistant, compliance review, orbital visualization and a playful browser typewriter. Press **Ctrl/Cmd + K** to jump between them. Drag the toys, launch the astronaut, solve Star Courier, or print a note on the pocket typewriter.
 
 ## Run locally
 
